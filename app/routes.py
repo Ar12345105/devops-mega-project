@@ -1,4 +1,3 @@
-cat <<'EOF' > app/routes.py
 from flask import Blueprint, jsonify
 
 bp = Blueprint("api", __name__)
@@ -10,4 +9,4 @@ def health():
 @bp.get("/items")
 def items():
     return jsonify(items=[{"id": 1, "name": "widget"}])
-EOF
+

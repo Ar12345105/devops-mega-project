@@ -1,14 +1,17 @@
-cat <<'EOF' > app/main.py
-from flask import Flask
-from app.routes import bp
+from flask import Flask, jsonify
 
-def create_app():
-    app = Flask(__name__)
-    app.register_blueprint(bp)
-    return app
+app = Flask(__name__)
+
+@app.route("/health")
+def health():
+    return jsonify({"status": "Welcome to DevOps Mega Project"})
+
+@app.route("/")
+def welcome():
+    return jsonify({"message": "This is the homepage of DevOps Mega Project"})
 
 if __name__ == "__main__":
-    app = create_app()
-    app.run(host="0.0.0.0", port=5000)
-EOF
+    # Must use 0.0.0.0 for Docker
+    app.run(host="0.0.0.0", port=8000, debug=True)
+
 
